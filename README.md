@@ -1,0 +1,1 @@
+Pause backup when i'm on bbzone network.

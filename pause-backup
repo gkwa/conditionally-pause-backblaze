@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+PATH="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources:$PATH"
+PATH="/Library/Backblaze.bzpkg:$PATH"
+
+if ! command -v bztransmit &>/dev/null; then
+    echo cant find bztransmit, exiting...
+    exit 1
+fi
+
+if ! command -v airport &>/dev/null; then
+    echo cant find airport, exiting...
+    exit 1
+fi
+
+if ! grep -qiE 'bbzone' <<<$(airport -I en0); then
+    exit 0
+fi
+
+bztransmit -pausebackup
